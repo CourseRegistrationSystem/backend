@@ -1,0 +1,147 @@
+{
+  "name": "DeviceData",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "alarmOverSpeed": {
+      "type": "boolean"
+    },
+    "alarmRemove": {
+      "type": "boolean"
+    },
+    "alarmMotion": {
+      "type": "boolean"
+    },
+    "alarmCrash": {
+      "type": "boolean"
+    },
+    "latitude": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "longitude": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "altitude": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "speed": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "direction": {
+      "type": "number",
+      "dataType": "double" 
+    },
+    "mileageOnMeter": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "fuel": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "engineSpeed": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "batteryVoltage": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "totalMileage": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "fuelConsumptionIdle": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "fuelConsumptionDriving": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "coolantTemperature": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "throttlePosition": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "tripId": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "tripMileage": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "tripFuelConsumption": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "tripAverageSpeed": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "tripMaximumSpeed": {
+      "type": "number",
+      "dataType": "double"
+    },
+    "createdDate": {
+      "type": "Date",
+      "defaultFn": "now"
+    }
+    
+  },
+  "validations": [],
+  "relations": {
+    "Device": {
+      "type": "belongsTo",
+      "model": "Device",
+      "foreignKey": "deviceId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "getLatestDataByDevice"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "getLatestDataByDevice"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": [
+        "dataDevice"
+      ]
+    }
+  ],
+  "methods": {}
+}
