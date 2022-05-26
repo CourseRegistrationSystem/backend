@@ -1,0 +1,64 @@
+{
+  "name": "Section",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "section": {
+      "type": "number",
+      "required": true
+    },
+    "capacity": {
+      "type": "number"
+    },
+    "session": {
+      "type": "string",
+      "required": true
+    },
+    "dateCreated": {
+      "type": "Date",
+      "defaultFn": "now"
+    }
+
+  },
+  "validations": [],
+  "relations": {
+      "student": {
+        "type": "hasMany",
+        "model": "Student",
+        "foreignKey": "sectionId"
+      }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listSection",
+        "updateInfo",
+        "updateSection"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

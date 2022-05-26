@@ -1,5 +1,5 @@
 {
-  "name": "my_jentera",
+  "name": "CRS",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
@@ -40,5 +40,5 @@
     "url": ""
   },
   "license": "UNLICENSED",
-  "description": "myJentera System"
+  "description": "CRS System"
 }

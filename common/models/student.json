@@ -1,0 +1,72 @@
+{
+  "name": "Student",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "matricNo": {
+      "type": "string",
+      "required": true
+    },
+    "program": {
+      "type": "string",
+      "required": true
+    },
+    "tahun_masuk": {
+      "type": "number",
+      "required": true
+    },
+    "semester_masuk": {
+      "type": "number",
+      "required": true
+    },
+    "sectionId": {
+      "type": "number"
+    }
+
+  },
+  "validations": [],
+  "relations": {
+    "section": {
+      "type": "belongsTo",
+      "model": "Section",
+      "foreignKey": "sectionId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listStudent",
+        "updateInfo",
+        "updateStudent"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

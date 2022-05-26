@@ -67,11 +67,7 @@
   },
   "validations": [],
   "relations": {
-    "deviceData": {
-      "type": "hasMany",
-      "model": "DeviceData",
-      "foreignKey": "deviceId"
-    }
+
 
   },
   "acls": [

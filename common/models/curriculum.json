@@ -1,0 +1,67 @@
+{
+  "name": "Curriculum",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id_kurikulum": {
+      "type": "number"
+    },
+    "tahun_masuk": {
+      "type": "number",
+      "required": true
+    },
+    "sesi_masuk": {
+      "type": "string",
+      "required": true
+    },
+    "kod_kurikulum": {
+      "type": "string",
+      "required": true
+    },
+    "nama_kurikulum": {
+      "type": "string",
+      "required": true
+    },
+    "semester_masuk": {
+      "type": "number",
+      "required": true
+    }
+
+  },
+  "validations": [],
+  "relations": {
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listCurriculum",
+        "updateInfo",
+        "updateCurriculum"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

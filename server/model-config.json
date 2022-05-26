@@ -45,5 +45,21 @@
   "DeviceData": {
     "dataSource": "mysql",
     "public": true
+  },
+  "Curriculum": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Student": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Lecturer": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Section": {
+    "dataSource": "mysql",
+    "public": true
   }
 }

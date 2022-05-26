@@ -36,7 +36,7 @@
     },
     "direction": {
       "type": "number",
-      "dataType": "double" 
+      "dataType": "double"
     },
     "mileageOnMeter": {
       "type": "number",
@@ -98,7 +98,7 @@
       "type": "Date",
       "defaultFn": "now"
     }
-    
+
   },
   "validations": [],
   "relations": {

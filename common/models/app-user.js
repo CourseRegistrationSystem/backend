@@ -17,8 +17,43 @@ module.exports = function (AppUser) {
     });
 
     AppUser.beforeRemote('login', async function (ctx, model) {
-        //console.log(ctx.args.credentials)
+        console.log(ctx.args.credentials)
+
+        // let url = `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi`;
+        // let body = `entity=authentication&login=${ctx.args.credentials.username}&password=${ctx.args.credentials.password}`;
+        // url = `${url}?${body}`;
+        // let response = await fetch(url);
+        // console.log(response)
+        // if (response.ok) {
+        //   const contentType = response.headers.get("content-type");
+        //   if (contentType && contentType.indexOf("text/plain") !== -1) {
+        //     // process your text/plain but!!! JSON data further
+        //     // console.log("stopped here")
+        //     try {
+        //       response = await response.json();
+        //     } catch (error) {
+        //       setFailedLogin(true);
+        //       return;
+        //     }
+        //     // console.log("stopped here")
+
+        //     let auth_user = JSON.stringify(response[0]);
+        //     localStorage.setItem("auth_user", auth_user);
+        //     loginAdmin(auth_user);
+        //     localStorage.setItem("password", password);
+        //   } else {
+        //     // it is text data.
+        //     response = await response.json();
+        //     // console.log(response)
+        //   }
+        // } else {
+        //   console.log("response not okay");
+        // }
+
+
         try {
+
+
             if (typeof (ctx.args.credentials.username) !== 'undefined') {
                 let __user = await AppUser.findOne({ where: { username: ctx.args.credentials.username } })
                 if (__user === null) {
@@ -92,7 +127,7 @@ module.exports = function (AppUser) {
 
         __registerUser(app, body, cb)
     }
-    
+
     AppUser.remoteMethod('registerAdmin', {
         description: `Register User Admin`,
         isStatic: true,
@@ -195,7 +230,7 @@ module.exports = function (AppUser) {
                 return Promise.reject({ statusCode: 400, message: 'User not Found.' })
             }
 
-            // Check Current User 
+            // Check Current User
             const token = options && options.accessToken;
             let _userBy = await AppUser.findOne({ where: { id: token.userId } })
             if (_userBy === null) {
@@ -580,7 +615,7 @@ function _disableRemoteMethod(Model) {
     // GET
     Model.disableRemoteMethodByName('find')
 
-    // POST 
+    // POST
     Model.disableRemoteMethodByName('create')
 
     // PUT
@@ -668,7 +703,7 @@ async function __registerUser(app, body, cb) {
         if (typeof (body.email) === 'undefined') {
             // create dummy email
             body.email = body.username + Date.now() + '@appsystem.com'
-            //return cb({statusCode: 400, message:'Missing email.'})   
+            //return cb({statusCode: 400, message:'Missing email.'})
         }
         // ------------------------------------------------------
 
@@ -708,7 +743,7 @@ async function __registerUser(app, body, cb) {
 async function __listUser(app, role, cb) {
     try {
 
-     
+
 
 
         // Check Role
