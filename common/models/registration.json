@@ -1,0 +1,79 @@
+{
+  "name": "Registration",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    
+    "nama_pelajar": {
+      "type": "string",
+      "required": true
+    },
+    "kad_matrik_pelajar": {
+      "type": "string",
+      "required": true
+    },
+  
+    "section_id": {
+      "type": "number"
+    },
+    "student_id": {
+      "type": "number"
+    },
+    "createdDate": {
+      "type": "Date",
+      "defaultFn": "now"
+    },
+    "modifiedDate": {
+      "type": "Date"
+    }
+   
+  },
+  "validations": [],
+  "relations": {
+    "section": {
+      "type": "belongsTo",
+      "model": "Section",
+      "foreignKey": "section_id"
+    },
+    "Registration": {
+      "type": "belongsTo",
+      "model": "Registration",
+      "foreignKey": "student_id"
+    }
+
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listRegistration",
+        "updateInfo",
+        "updateRegistration"
+        
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

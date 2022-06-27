@@ -1,0 +1,103 @@
+{
+  "name": "Reference",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "onlineStatus": {
+      "type": "number",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "device_id": {
+      "type": "string",
+      "required": true
+    },
+    "api_key": {
+      "type": "string",
+      "required": true
+    },
+    "createdDate": {
+      "type": "Date",
+      "defaultFn": "now"
+    },
+    "modifiedDate": {
+      "type": "Date"
+    },
+    "ownerName": {
+      "type": "string",
+      "required": true
+    },
+    "ownerIc": {
+      "type": "string"
+    },
+    "ownerPhoneNum": {
+      "type": "string"
+    },
+    "ownerLicenseNum": {
+      "type": "string"
+    },
+    "ownerBirthDate": {
+      "type": "Date"
+    },
+    "vehicleModel": {
+      "type": "string"
+    },
+    "vehiclePlateNum": {
+      "type": "string"
+    },
+    "vehicleChasisNum": {
+      "type": "string"
+    },
+    "vehicleEngineNumber": {
+      "type": "string"
+    },
+    "vehiclePicture": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+
+
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listReference",
+        "updateInfo",
+        "updateReference"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

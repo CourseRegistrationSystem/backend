@@ -1,0 +1,62 @@
+{
+  "name": "Table",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "masa": {
+      "type": "number",
+      "required": true
+    },
+    "hari": {
+      "type": "number",
+      "required": true
+    },
+    "section_id": {
+      "type": "number",
+      "required": true
+    }
+   
+  },
+  "validations": [],
+  "relations": {
+    "Section": {
+      "type": "belongsTo",
+      "model": "Section",
+      "foreignKey": "section_id"
+    }
+
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listtable",
+        "updateInfo",
+        "updatetable"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Course",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "kod_subjek": {
+      "type": "string",
+      "required": true
+    },
+    "nama_subjek": {
+      "type": "string",
+      "required": true
+    },
+    "sesi": {
+      "type": "string",
+      "required": true
+    },
+    
+    "semester": {
+      "type": "number",
+      "required": true
+    },
+    "createdDate": {
+      "type": "Date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "section": {
+      "type": "hasMany",
+      "model": "Section",
+      "foreignKey": "course_id"
+    }
+
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listCourse",
+        "updateInfo",
+        "updateCourse"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

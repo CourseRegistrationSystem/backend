@@ -61,5 +61,22 @@
   "Section": {
     "dataSource": "mysql",
     "public": true
+  },
+  "Registration": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Table": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "RegistrationSchedule": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Course": {
+    "dataSource": "mysql",
+    "public": true
   }
+
 }

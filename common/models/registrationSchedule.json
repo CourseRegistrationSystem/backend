@@ -1,0 +1,72 @@
+{
+  "name": "RegistrationSchedule",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "startDateTime": {
+      "type": "date",
+      "required": true
+    },
+    "endDateTime": {
+      "type": "date",
+      "required": true
+    },
+    "session": {
+      "type": "string",
+      "required": true
+    },
+    "semester": {
+      "type": "number",
+      "required": true
+    },	
+    "id_RegistrationSchedule": {
+      "type": "string",
+      "required": true
+    },
+    "createdDate": {
+      "type": "date",
+      "defaultFn": "now"
+    },
+    "nameCreatedBy": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+
+
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "register",
+        "listRegistrationSchedule",
+        "updateInfo",
+        "updateRegistrationSchedule"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}
