@@ -14,29 +14,29 @@
       "type": "string",
       "required": true
     },
-    "program": {
+    "sesi": {
       "type": "string",
       "required": true
     },
-    "tahun_masuk": {
+    "semester": {
       "type": "number",
       "required": true
     },
-    "semester_masuk": {
-      "type": "number",
-      "required": true
+    "createdDate": {
+      "type": "Date",
+      "defaultFn": "now"
     },
-    "sectionId": {
-      "type": "number"
+    "modifiedDate": {
+      "type": "date"
     }
 
   },
   "validations": [],
   "relations": {
-    "section": {
-      "type": "belongsTo",
-      "model": "Section",
-      "foreignKey": "sectionId"
+    "registration": {
+      "type": "hasMany",
+      "model": "Registration",
+      "foreignKey": "student_id"
     }
   },
   "acls": [

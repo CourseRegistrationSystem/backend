@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    
+
     "nama_pelajar": {
       "type": "string",
       "required": true
@@ -15,7 +15,7 @@
       "type": "string",
       "required": true
     },
-  
+
     "section_id": {
       "type": "number"
     },
@@ -29,7 +29,7 @@
     "modifiedDate": {
       "type": "Date"
     }
-   
+
   },
   "validations": [],
   "relations": {
@@ -38,9 +38,9 @@
       "model": "Section",
       "foreignKey": "section_id"
     },
-    "Registration": {
+    "student": {
       "type": "belongsTo",
-      "model": "Registration",
+      "model": "Student",
       "foreignKey": "student_id"
     }
 
@@ -62,7 +62,7 @@
         "listRegistration",
         "updateInfo",
         "updateRegistration"
-        
+
       ]
     },
     {

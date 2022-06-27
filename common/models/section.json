@@ -13,9 +13,11 @@
     "capacity": {
       "type": "number"
     },
-    "session": {
-      "type": "string",
-      "required": true
+    "course_id": {
+      "type": "number"
+    },
+    "nama_pensyarah": {
+      "type": "string"
     },
     "dateCreated": {
       "type": "Date",
@@ -25,10 +27,20 @@
   },
   "validations": [],
   "relations": {
-      "student": {
+      "table": {
         "type": "hasMany",
-        "model": "Student",
-        "foreignKey": "sectionId"
+        "model": "Table",
+        "foreignKey": "section_id"
+      },
+      "course": {
+        "type": "belongsTo",
+        "model": "Course",
+        "foreignKey": "course_id"
+      },
+      "registration": {
+        "type": "hasMany",
+        "model": "Registration",
+        "foreignKey": "section_id"
       }
   },
   "acls": [

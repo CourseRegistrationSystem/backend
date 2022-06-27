@@ -397,7 +397,7 @@ module.exports = function (Registration) {
             where: { matricNo: matricNo },
             include: [
               {
-                relation: "Registration",
+                relation: "registration",
                 scope: {
                   include: [
                     {
@@ -411,7 +411,7 @@ module.exports = function (Registration) {
               },
             ],
           });
-          // console.log(__sensor);
+          console.log(registerDetails);
           if (registerDetails !== null) {
             // ada dalam database
             return Promise.resolve({
