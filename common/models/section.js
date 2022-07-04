@@ -106,6 +106,20 @@ module.exports = function (Section) {
         http: { path: '/listSection', verb: 'get' }
     })
 
+    Section.getSectionMemberListById = function (filter,cb) {
+      getSectionMemberListById(__app, cb,filter)
+  }
+  Section.remoteMethod('getSectionMemberListById', {
+      description: `getSectionMemberListById`,
+      isStatic: true,
+      accepts: [{ arg: "filter", type: "object", required: true }],
+    returns: {
+      type: "object",
+      root: true,
+    },
+      http: { path: '/getSectionMemberListById', verb: 'get' }
+  })
+
     //----- DELETE -----
 
     Section.removeSection = async function (id) {
@@ -247,6 +261,37 @@ async function __listSection(app ,cb) {
     } catch (error) {
         cb(error)
     }
+}
+
+
+async function getSectionMemberListById(app ,cb,filter) {
+  console.log(filter)
+  try {
+      let curriculum = await app.models.Section.findOne(
+        {
+          // fields: [
+          //     "session" ,
+
+          // ],
+          where: {
+            and: [
+              { isDeleted: false },
+              { id: filter.id },
+              {
+                // createdDate: {
+                //   between: [filter + " 00:00:00", filter + " 23:59:59"],
+                // },
+              },
+            ],
+           },
+           include: [{ relation: "registration" }, { relation: "course" }]
+      }
+      )
+      console.log(curriculum)
+      cb(null, curriculum)
+  } catch (error) {
+      cb(error)
+  }
 }
 
 function __createApiKey() {

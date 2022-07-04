@@ -397,7 +397,7 @@ module.exports = function (Registration) {
             where: { matricNo: matricNo },
             include: [
               {
-                relation: "registration",
+                relation: "Registration",
                 scope: {
                   include: [
                     {
@@ -414,16 +414,17 @@ module.exports = function (Registration) {
           console.log(registerDetails);
           if (registerDetails !== null) {
             // ada dalam database
+            time.registerDetails = registerDetails
             return Promise.resolve({
               statusToRegister: false,
               message: "User is already registered his/her course",
-              data: {time:time,registerDetails:registerDetails},
+              data: time,
               type: 2
             });
           } else {
             return Promise.resolve({
               statusToRegister: true,
-              message: "Able to perform course registration",
+              message: "Course registration is available",
               data: inRegistration,
               type: 3
             });
@@ -432,7 +433,7 @@ module.exports = function (Registration) {
           return Promise.resolve({
             statusCode: 400,
             statusToRegister: false,
-            message: "There is no course registration open yet",
+            message: "Course registration is not available at this moment",
             data: null,
             type: 4
           });

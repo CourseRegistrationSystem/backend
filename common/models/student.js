@@ -13,23 +13,22 @@ module.exports = function (Student) {
 
     //Register =========================================================
     Student.register = async function (data) {
-        // console.log(data)
-        if (typeof (data.name) === 'undefined') {
-            return Promise.reject({ statusCode: 400, message: 'Missing name.' })
-        }
-        if (typeof (data.devid) === 'undefined') {
-            return Promise.reject({ statusCode: 400, message: 'Missing devid.' })
-        }
+        console.log(data)
+        // if (typeof (data.name) === 'undefined') {
+        //     return Promise.reject({ statusCode: 400, message: 'Missing name.' })
+        // }
+        // if (typeof (data.devid) === 'undefined') {
+        //     return Promise.reject({ statusCode: 400, message: 'Missing devid.' })
+        // }
 
         try {
             // Check
-            let __sensor = await Student.findOne({ where: { device_id: data.devid } })
+            let __sensor = await Student.findOne({ where: { matricNo: data.user.matricNo } })
             if (__sensor !== null) {
-                return Promise.reject({ statusCode: 400, message: 'Sensor Student already register!.' })
+                return Promise.reject({ statusCode: 400, message: 'Student already register!.' })
             }
 
-            let _apiKey = await __createApiKey()
-            let _data = { name: data.name, device_id: data.devid, api_key: _apiKey }
+            let _data = { name: data.user.name, matricNo: data.user.matricNo, sesi: data.sesi, semester: data.semester }
             let _res = await Student.create(_data)
 
             return Promise.resolve(_res)
@@ -234,7 +233,7 @@ function _disableRemoteMethod(Model) {
 async function __listStudent(app ,cb) {
     try {
 
-      
+
         let curriculum = await app.models.Student.find(
           {
             // fields: [
@@ -247,7 +246,7 @@ async function __listStudent(app ,cb) {
             // ],
             where: { isDeleted: false },
             // where: { and: [{ isDeleted: false }, { deviceId: ListID[index] } ] },
-            include: "Section",
+            include: "Registration",
         }
         )
         cb(null, curriculum)
